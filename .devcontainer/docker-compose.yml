@@ -1,0 +1,20 @@
+version: "3"
+services:
+  employee-api: 
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        - VARIANT=buster
+        - INSTALL_MAVEN=true
+        - INSTALL_GRADLE=false
+        - NODE_VERSION=none
+    ports:
+      - "8080:8080"
+    volumes:
+      - ..:/workspace:cached
+    env_file: ./devcontainer.env
+    command: sleep infinity
+  db:
+    image: "postgres:14"
+    env_file: ./devcontainer.env
