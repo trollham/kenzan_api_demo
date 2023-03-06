@@ -1,8 +1,8 @@
 # Kenzan Employee API test
 
-##Getting Started
+## Getting Started
 
-###Docker Compose
+### Docker Compose
 A preconfigured PostgreSQL database is available by running the service through docker-compose.
 ```bash
 $ docker-compose -f .devcontainer/docker-compose.yml up -d
@@ -11,7 +11,7 @@ $ docker exec -it devcontainer_employee-api_1 /bin/bash
 $ cd workspace
 $ ./mvnw spring-boot:run
 ```
-###To run the API natively
+### To run the API natively
 ```bash
 DATABASE_URL="postgresql://<postgres host>:<postgres port>/<postgres database>" ./mvnw spring-boot:run
 ```
@@ -25,14 +25,14 @@ To change these defaults, change these values in `src/main/resources/application
 spring.datasource.username=postgres
 spring.datasource.password=password
 ```
-###Using the API
+### Using the API
 The API supports CRUD operations on the `/employees` endpoint. 
-####Create
+#### Create
 ```bash
 curl -X POST -H 'Content-Type: application/json' localhost:8080/employees \
   -d '{"firstName":"Foo","middleInitial":"Z","lastName":"Bar","dateOfBirth":"1970-01-01","dateOfEmployment":"2022-01-01","status":"ACTIVE"}'
 ```
-###Read
+### Read
 All active employees can be retrieved with the `/employees` endpoint. For example: 
 ```bash
 curl localhost:8080/employees
@@ -41,12 +41,12 @@ You can also fetch an individual active employee with `/employees/{id}`:
 ```bash
 curl localhost:8080/employees/1
 ```
-###Update
+### Update
 ```bash
 curl -X PATCH -H 'Content-Type: application/json' localhost:8080/employees/1 \
   -d '{"status": "ACTIVE"}'
 ```
-###Delete
+### Delete
 The DELETE method is protected by HTTP Basic authentication. Running without an authorized user will result in 401 response. To avoid this, run with the user `admin` and the password `admin`.
 ```bash
 curl -X DELETE --user admin:admin localhost:8080/employees/1
